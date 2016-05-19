@@ -6,6 +6,7 @@ function jsonSplit(url) {
     return {};
   }
   var propsArr = url.split('?');
+  // 如果请求头并不包含回调函数名，请求参数则返回空对象
   if (!propsArr[1]) {
     return {};
   }
@@ -26,14 +27,14 @@ function querySQL(info) {
 }
 
 // 产生返回的结果
-function generateResponseObj(obj) {
+function generateResponseData(obj) {
   var result = {};
   for (var i in obj) {
     if (i !== 'callback') {
       result[i] = querySQL(obj[i]);
     }
   }
-  return result;
+  return JSON.stringify(result);
 }
 
 var server = http.createServer(function(request, response) {
@@ -66,14 +67,16 @@ var server = http.createServer(function(request, response) {
   }
   else if (url.includes('/jsonp.js')) {
     console.log('jsonp request received');
+    
     // 将接收到到查询语句转换为json对象
     var receiveObj = jsonSplit(url);
-    var responsObj = generateResponseObj(receiveObj);
+    // 从json对象中分离
+    var responseData = generateResponseData(receiveObj);
     response.writeHead(200, {
       'Content-Type': 'text/javascript',
     })
-    var responseData = JSON.stringify(responsObj);
-    response.end(receiveObj.callback + '(' + responseData + ')');
+    var callbackName = receiveObj.callback || '';
+    response.end(callbackName + '(' + responseData + ')');
   }
 });
 server.listen(PORT);
