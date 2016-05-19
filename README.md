@@ -34,3 +34,29 @@ xhr.responseText;
 
 [JSONP跨域原理](http://stackoverflow.com/questions/2067472/what-is-jsonp-all-about)
 使用JSONP的核心是*script*, *img*标签是没有同源策略的。也就是说不论当前的地址是多少，在*script*标签中必然能够访问的src所指向的内容，也就实现了跨域。
+
+在该项目中使用的一个jsonp请求可以是这样子的：
+*http://localhost:9889/jsonp.js?callback=console.log&id=1090*
+
+http://localhost:9889/jsonp.js 是请求的地址，本次采用jsonp.js表示该此请求为jsonp请求。
+'?'后面的参数callback=console.log&id=1090表示请求的信息。其中
+- callback=console.log 表示返回给用户的回调函数名。
+- id=1090 表示需要请求的数据。
+
+服务器在接收到请求后的处理流程是这样的:
+- 判断是jsonp请求
+- 从请求的url中找出用户想要返回的数据，并查询结果,将其转换为json对象
+- 从url中找到用户需要的回调函数，将其放在查询结果前面
+- 返回结果给用户
+
+等同于用户请求上面的url后，得到了一个jsonp.js文件，文件内容是:
+```
+// 浏览器接收到到文件jsonp.js
+console.log({
+  id: 1090,
+  // 查询的name
+  name: go1123,
+  // 查询到的性别
+  sex: male
+})
+```
