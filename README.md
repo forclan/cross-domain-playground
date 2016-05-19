@@ -29,3 +29,12 @@ xhr.responseText;
 // results
 // "{"name":"forclan","age":1080,"port":9889,"requestReferer":"http://blog.csdn.net/fdipzone/article/details/46390573"}"
 ```
+
+
+
+
+## TODO
+- [ ] ADD jsonp
+- [ ] ADD window.name
+- [ ] ADD document.domain
+- [ ] ADD CSST
