@@ -6,7 +6,7 @@ var server = http.createServer(function(request, response) {
   // 获取请求的地址
   var referer = request.headers.referer;
 
-  // ajax 处理
+  // ajax 处理,当访问／xhr目录时，视为ajax请求
   if (url.includes('/xhr')) {
     console.log('xhr request received');
     var accessDomain = '*';
