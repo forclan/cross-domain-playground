@@ -76,7 +76,7 @@ var server = http.createServer(function(request, response) {
       'Content-Type': 'text/javascript',
     })
     var callbackName = receiveObj.callback || '';
-    response.end(callbackName + '(' + responseData + ')');
+    response.end(callbackName + '(' + responseData + ');' + 'console.log("jsonp received")');
   }
 });
 server.listen(PORT);
