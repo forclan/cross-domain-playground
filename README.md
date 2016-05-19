@@ -60,3 +60,12 @@ console.log({
   sex: male
 })
 ```
+=======
+
+
+
+## TODO
+- [ ] ADD jsonp
+- [ ] ADD window.name
+- [ ] ADD document.domain
+- [ ] ADD CSS
