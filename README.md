@@ -10,7 +10,10 @@ git clone https://github.com/forclan/cross-domain-playground.git
 npm start
 ```
 
-### CORS
+## 跨域方法
+* [CORS](#CORS)
+
+### <span id="CORS">CORS</span>
 
 [CORS跨域原理](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)
 默认在地址 *localhost:9889/xhr* 提供ajax的服务.
