@@ -29,3 +29,8 @@ xhr.responseText;
 // results
 // "{"name":"forclan","age":1080,"port":9889,"requestReferer":"http://blog.csdn.net/fdipzone/article/details/46390573"}"
 ```
+
+### <span id="JSONP">JSONP</span>
+
+[JSONP跨域原理](http://stackoverflow.com/questions/2067472/what-is-jsonp-all-about)
+使用JSONP的核心是*script*, *img*标签是没有同源策略的。也就是说不论当前的地址是多少，在*script*标签中必然能够访问的src所指向的内容，也就实现了跨域。
