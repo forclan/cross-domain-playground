@@ -26,7 +26,7 @@ function querySQL(info) {
   return info + Math.floor(Math.random() * 100);
 }
 
-// 产生返回的结果
+// 产生jsonp返回的结果
 function generateResponseData(obj) {
   var result = {};
   for (var i in obj) {
