@@ -12,6 +12,7 @@ npm start
 
 ## 跨域方法
 * [CORS](#CORS)
+* [JSONP](#JSONP)
 
 ### <span id="CORS">CORS</span>
 
@@ -60,10 +61,65 @@ console.log({
   sex: male
 })
 ```
-=======
 
+#### JSONP使用方法
+启动服务器
+```
+npm start
+```
+现在jsonp的服务器在*http://localhost:9889/jsonp.js*上运行。
+你可以直接访问http://localhost:9889/jsonp.js，界面会是这样的：
+![jsonp](/images/jsonp.js-capture.png)
 
+网页显示这个是由于直接访问jsonp.js而没有传入任何参数，于是服务器直接返回`({})`,后面的console.log是用于debug的语句，服务器一定会返回这条语句。
+如果你将访问的地址改成`http://localhost:9889/jsonp.js?name=zmsj`，界面上显示的结果为：
+```
+({"name":"zsmj44"});console.log("jsonp received")
+```
+服务器在接收到请求后，会截取'?'后面的字符串。并对该字符串以‘&’符号切割不同的属性值，‘=’前面的转化为对象的属性名，‘=’后面的设置为属性值。
+```
+// example
+id=zsmj&port=9889
+// transmite to 
+/*
+  {
+    'id': 'zsmj',
+    'port': '9889'
+  }
+*/
+```
+并在这个对象的属性值后面添加一个随机的数值（模拟查询操作）,所以访问`http://localhost:9889/jsonp.js?name=zmsj`得到结果为`({"name":"zsmj44"});console.log("jsonp received")`.44是随机添加的数字。
+值得一提的是callback属性，callback后面的参数会被当做回调函数的名字被添加到返回文件的前面
+```
+http://localhost:9889/jsonp.js?name=zsmj&callback=myCallback
+// result
+// myCallback({"name":"zsmj59"});console.log("jsonp received")
+```
+打开一个网页(http协议的)。然后在console进行一下操作
+```
+// 定义回调函数
+function myCallback(obj) {
+  console.log(obj);
+}
+```
+创建script节点
+```
+var src = document.createElement('script');
+// 设置传入的参数，回调函数名
+src.setAttribute('src', 'http://localhost:9889/jsonp.js?callback=myCallback&id=azz');
+```
+将节点插入DOM（运行）
+```
+document.body.appendChild(src);
+// result
+// Object {id: "azz90"}
+```
 
+如果你不想使用本地的服务器，可以访问**,这个地址提供jsonp服务。
+使用方法：在你的html文件中添加
+```
+<script src=''></script>
+```
 ## TODO
 - [x] ADD jsonp
 - [ ] ADD window.name
