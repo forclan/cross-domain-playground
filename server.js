@@ -2,7 +2,8 @@ var PORT = 9889;
 var http = require('http');
 
 function jsonSplit(url) {
-  if (!url.includes('/jsonp.js')) {
+  var jsonpReg = /jsonp.js/;
+  if (!jsonpReg.test(url)) {
     return {};
   }
   var propsArr = url.split('?');
@@ -40,6 +41,8 @@ function generateResponseData(obj) {
 var server = http.createServer(function(request, response) {
   // 获取想要访问的url
   var url = request.url;
+  console.log(url);
+  console.log(/jsonp.js/.test(url));
   // 获取请求的地址
   var referer = request.headers.referer;
 
