@@ -65,7 +65,7 @@ console.log({
 
 
 ## TODO
-- [ ] ADD jsonp
+- [x] ADD jsonp
 - [ ] ADD window.name
 - [ ] ADD document.domain
 - [ ] ADD CSS
