@@ -118,7 +118,7 @@ document.body.appendChild(src);
 如果你不想使用本地的服务器，可以访问*http://www.forclan.com:9889/jsonp.js*,这个地址提供jsonp服务。
 使用方法：在你的html文件中添加
 ```
-<script src='http://www.forclan.com:9889/jsonp.js&callback=myCallback&testAttr=13'></script>
+<script src='http://www.forclan.com:9889/jsonp.js?callback=myCallback&testAttr=13'></script>
 ```
 ## TODO
 - [x] ADD jsonp
