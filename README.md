@@ -11,10 +11,10 @@ npm start
 ```
 
 ## 跨域方法
-* [CORS](#CORS)
-* [JSONP](#JSONP)
+* [CORS](#cors)
+* [JSONP](#jsonp)
 
-### <span id="CORS">CORS</span>
+### <span id="cors">CORS</span>
 
 [CORS跨域原理](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)
 默认在地址 *localhost:9889/xhr* 提供ajax的服务.
@@ -31,7 +31,7 @@ xhr.responseText;
 // "{"name":"forclan","age":1080,"port":9889,"requestReferer":"http://blog.csdn.net/fdipzone/article/details/46390573"}"
 ```
 
-### <span id="JSONP">JSONP</span>
+### <span id="jsonp">JSONP</span>
 
 [JSONP跨域原理](http://stackoverflow.com/questions/2067472/what-is-jsonp-all-about)
 使用JSONP的核心是*script*, *img*标签是没有同源策略的。也就是说不论当前的地址是多少，在*script*标签中必然能够访问的src所指向的内容，也就实现了跨域。
