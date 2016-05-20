@@ -74,7 +74,7 @@ npm start
 网页显示这个是由于直接访问jsonp.js而没有传入任何参数，于是服务器直接返回`({})`,后面的console.log是用于debug的语句，服务器一定会返回这条语句。
 如果你将访问的地址改成`http://localhost:9889/jsonp.js?name=zmsj`，界面上显示的结果为：
 ```
-({"name":"zsmj44"});console.log("jsonp received")
+({"name":"zsmj44"});
 ```
 服务器在接收到请求后，会截取'?'后面的字符串。并对该字符串以‘&’符号切割不同的属性值，‘=’前面的转化为对象的属性名，‘=’后面的设置为属性值。
 ```
@@ -93,7 +93,7 @@ id=zsmj&port=9889
 ```
 http://localhost:9889/jsonp.js?name=zsmj&callback=myCallback
 // result
-// myCallback({"name":"zsmj59"});console.log("jsonp received")
+// myCallback({"name":"zsmj59"});
 ```
 打开一个网页(http协议的)。然后在console进行一下操作
 ```
