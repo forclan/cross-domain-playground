@@ -31,6 +31,8 @@ xhr.responseText;
 // "{"name":"forclan","age":1080,"port":9889,"requestReferer":"http://blog.csdn.net/fdipzone/article/details/46390573"}"
 ```
 
+如果不想使用本地的服务器，可以访问*http://www.forclan.com:9889/xhr*
+
 ### <span id="jsonp">JSONP</span>
 
 [JSONP跨域原理](http://stackoverflow.com/questions/2067472/what-is-jsonp-all-about)
