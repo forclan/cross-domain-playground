@@ -44,7 +44,9 @@ var server = http.createServer(function(request, response) {
   var referer = request.headers.referer;
 
   // ajax 处理,当访问／xhr目录时，视为ajax请求
-  if (url.includes('/xhr')) {
+  var xhrReg = /xhr/;
+  var jsonpReg = /jsonp.js/;
+  if (xhrReg.test(url)) {
     console.log('xhr request received');
     var accessDomain = '*';
     response.writeHead(200, {
@@ -65,7 +67,7 @@ var server = http.createServer(function(request, response) {
     };
     response.end(JSON.stringify(obj));
   }
-  else if (url.includes('/jsonp.js')) {
+  else if (jsonpReg.test(url)) {
     console.log('jsonp request received');
     
     // 将接收到到查询语句转换为json对象
@@ -77,6 +79,12 @@ var server = http.createServer(function(request, response) {
     })
     var callbackName = receiveObj.callback || '';
     response.end(callbackName + '(' + responseData + ')');
+  }
+  else {
+    response.writeHead(200, {
+      'Content-Type': 'text/plain'
+    })
+    response.end('not found');
   }
 });
 server.listen(PORT);
